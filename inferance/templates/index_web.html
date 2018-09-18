@@ -1,0 +1,67 @@
+<!--
+Copyright 2015-2016 Carnegie Mellon University
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Auto ML Test</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    </head>
+    <body>
+      <h3>Auto ML Test Based On NXP I.MX</h3>
+      <input type="image" id="401" src="{{url_for('static',filename='testfile/401.jpg')}}" onclick="btnImageOnclick(401)"/>
+      <input type="image" id="402" src="{{url_for('static',filename='testfile/402.jpg')}}" onclick="btnImageOnclick(402)"/>
+      <input type="image" id="403" src="{{url_for('static',filename='testfile/403.jpg')}}" onclick="btnImageOnclick(403)"/>
+      <input type="image" id="404" src="{{url_for('static',filename='testfile/404.jpg')}}" onclick="btnImageOnclick(404)"/>
+      <input type="image" id="405" src="{{url_for('static',filename='testfile/405.jpg')}}" onclick="btnImageOnclick(405)"/>
+      <input type="image" id="406" src="{{url_for('static',filename='testfile/406.jpg')}}" onclick="btnImageOnclick(406)"/>
+      <input type="image" id="407" src="{{url_for('static',filename='testfile/407.jpg')}}" onclick="btnImageOnclick(407)"/>
+      <input type="image" id="408" src="{{url_for('static',filename='testfile/408.jpg')}}" onclick="btnImageOnclick(408)"/>
+      <input type="image" id="409" src="{{url_for('static',filename='testfile/409.jpg')}}" onclick="btnImageOnclick(409)"/>
+      
+      <input type="image" id="501" src="{{url_for('static',filename='testfile/501.jpg')}}" onclick="btnImageOnclick(501)"/>
+      <input type="image" id="503" src="{{url_for('static',filename='testfile/503.jpg')}}" onclick="btnImageOnclick(503)"/>
+      <input type="image" id="505" src="{{url_for('static',filename='testfile/505.jpg')}}" onclick="btnImageOnclick(505)"/>
+      <input type="image" id="506" src="{{url_for('static',filename='testfile/506.jpg')}}" onclick="btnImageOnclick(506)"/>
+      <input type="image" id="507" src="{{url_for('static',filename='testfile/507.jpg')}}" onclick="btnImageOnclick(507)"/>
+      <input type="image" id="508" src="{{url_for('static',filename='testfile/508.jpg')}}" onclick="btnImageOnclick(508)"/>
+      <input type="image" id="509" src="{{url_for('static',filename='testfile/509.jpg')}}" onclick="btnImageOnclick(509)"/>
+      <input type="image" id="510" src="{{url_for('static',filename='testfile/510.jpg')}}" onclick="btnImageOnclick(510)"/>
+      <input type="image" id="511" src="{{url_for('static',filename='testfile/511.jpg')}}" onclick="btnImageOnclick(511)"/>
+      
+      <input type="image" id="610" src="{{url_for('static',filename='testfile/610.jpg')}}" onclick="btnImageOnclick(610)"/>
+      <input type="image" id="601" src="{{url_for('static',filename='testfile/601.jpg')}}" onclick="btnImageOnclick(601)"/>
+      <input type="image" id="602" src="{{url_for('static',filename='testfile/602.jpg')}}" onclick="btnImageOnclick(602)"/>
+      <input type="image" id="603" src="{{url_for('static',filename='testfile/603.jpg')}}" onclick="btnImageOnclick(603)"/>
+      <input type="image" id="604" src="{{url_for('static',filename='testfile/604.jpg')}}" onclick="btnImageOnclick(604)"/>
+      <input type="image" id="605" src="{{url_for('static',filename='testfile/605.jpg')}}" onclick="btnImageOnclick(605)"/>
+      <input type="image" id="606" src="{{url_for('static',filename='testfile/606.jpg')}}" onclick="btnImageOnclick(606)"/>
+      <input type="image" id="607" src="{{url_for('static',filename='testfile/607.jpg')}}" onclick="btnImageOnclick(607)"/>
+      <input type="image" id="608" src="{{url_for('static',filename='testfile/608.jpg')}}" onclick="btnImageOnclick(608)"/>
+    </body>
+    <script src="{{url_for('static',filename='js/facereg-demo.js')}}"></script>
+    <script src="{{url_for('static',filename='js/socket.io.min.js')}}"></script>
+    <script type="text/javascript">
+     var people = '', training = false, socket;
+     console.log("Start");
+
+     createSocket('http://' + document.domain + ':' + location.port + '/testnamespace');
+
+    </script>
+</html>
