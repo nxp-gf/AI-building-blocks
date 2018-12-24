@@ -75,8 +75,8 @@ def train():
     quick_form = QuickTrainingForm()
     if request.method=='POST':
         print "send train"
-        producer.send(topic_training, b"training")
-        time.sleep(1)
+        future = producer.send(topic_training, b"training")
+        result = future.get(timeout=60)
         print "send ok"
     else:
         print "no train"
@@ -91,8 +91,8 @@ def quick_train():
     quick_form = QuickTrainingForm()
     if request.method=='POST':
         print "send quick train"
-        producer.send(topic_training_quickly, b"quick training")
-        time.sleep(1)
+        future = producer.send(topic_training_quickly, b"quick training")
+        result = future.get(timeout=60)
         print "send ok"
 
     return render_template('index.html', form=form, train_form=train_form, 
