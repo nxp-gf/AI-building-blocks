@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<title>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upload File and training</title>
+<form method="POST" enctype="multipart/form-data", action="/upload", name="uploading">
+	{{ form.hidden_tag() }}
+	<br>{{ form.photo.label }} {{ form.photo }}
+	{% for error in form.photo.errors %}
+		<span style="color: red;">{{ error }}</span>
+	{% endfor %}
+	&nbsp;&nbsp; {{ form.label.label }} {{ form.label() }}
+	&nbsp;&nbsp; {{ form.submit }}
+</form>
+
+<form method="POST" action="/train", name="training">
+	<br><br><br>{{ train_form.submit }}
+</form>
+
+<form method="POST" action="/quick_train", name="quick training">
+	<br><br>{{ quick_form.submit }}
+</form>
+
+{% if file_url %}
+<br><img src="{{ file_url }}">
+{% endif %}
