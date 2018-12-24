@@ -54,14 +54,10 @@ def upload():
     quick_form = QuickTrainingForm()
     if form.validate_on_submit():
         path = os.path.join(UPLOAD_FOLDER, form.label.data)
-        print path
         if not os.path.exists(path):
             os.makedirs(path)
-        print form.label.data
         filename = photos.save(form.photo.data, path)
-        print filename
         file_url = photos.url(filename)
-        print file_url
     else:
         file_url = None
     
@@ -74,12 +70,11 @@ def train():
     train_form = TrainingForm()
     quick_form = QuickTrainingForm()
     if request.method=='POST':
-        print "send train"
         future = producer.send(topic_training, b"training")
         result = future.get(timeout=60)
-        print "send ok"
+        print("send training ok")
     else:
-        print "no train"
+        print("no train")
     
     return render_template('index.html', form=form, train_form=train_form, 
             quick_form=quick_form)
@@ -90,10 +85,9 @@ def quick_train():
     train_form = TrainingForm()
     quick_form = QuickTrainingForm()
     if request.method=='POST':
-        print "send quick train"
         future = producer.send(topic_training_quickly, b"quick training")
         result = future.get(timeout=60)
-        print "send ok"
+        print("send quick training ok")
 
     return render_template('index.html', form=form, train_form=train_form, 
             quick_form=quick_form)
