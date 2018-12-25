@@ -65,14 +65,22 @@ def kafka_handler():
 
     topic_updated = "NXP_MODELS_UPDATED"
     topic_training = "NXP_DATASET_TRAINING"
+    topic_training_quickly = "NXP_DATASET_QUICK_TRAINING"
     consumer = KafkaConsumer(bootstrap_servers='10.193.20.98:9092')
     producer = KafkaProducer(bootstrap_servers='10.193.20.98:9092')
-    consumer.subscribe([topic_training])
+    consumer.subscribe([topic_training, topic_training_quickly])
     for msg in consumer:
-        filename = "/root/building-blocks/finalmodel"
-        train(filename)
-        future = producer.send(topic_updated, filename.encode())
-        result = future.get(timeout=60)
+        if (msg.topic == topic_training):
+            filename = "/root/building-blocks/finalmodel"
+            train(filename)
+            future = producer.send(topic_updated, filename.encode())
+            result = future.get(timeout=60)
+        elif (msg.topic == topic_training_quickly):
+            filename = "/root/building-blocks/testmodel"
+            future = producer.send(topic_updated, filename.encode())
+            result = future.get(timeout=60)
+        else:
+            print("Invilid msg topic:", msg.topic)
 
 train_process = multiprocessing.Process(target = kafka_handler, args = ())
 train_process.start()
