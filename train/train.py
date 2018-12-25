@@ -13,6 +13,7 @@ TEST_IMG_DIR = '/root/re/test-formatted'
 MODEL_DIR = '/root/re/my_model.h4'
 trn_path = '/root/re/train-ge'
 val_path = '/root/re/test-ge'
+MODELS_PATH = "./models"
 
 def train(filename):
     from tensorflow.keras.preprocessing import image
@@ -71,12 +72,12 @@ def kafka_handler():
     consumer.subscribe([topic_training, topic_training_quickly])
     for msg in consumer:
         if (msg.topic == topic_training):
-            filename = "/root/building-blocks/finalmodel"
+            filename = os.path.join(MODELS_PATH, "finalmodel")
             train(filename)
             future = producer.send(topic_updated, filename.encode())
             result = future.get(timeout=60)
         elif (msg.topic == topic_training_quickly):
-            filename = "/root/building-blocks/testmodel"
+            filename = "testmodel"
             future = producer.send(topic_updated, filename.encode())
             result = future.get(timeout=60)
         else:
@@ -95,9 +96,9 @@ class TrainModels(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('name', type=str, location='args')
-        self.modelspath = "./models"
     def get(self):
-        return send_from_directory(self.modelspath, data.name, as_attachment=True)
+        args = self.parser.parse_args()
+        return send_from_directory(MODELS_PATH, args.name, as_attachment=True)
 
     def delete(self):
         return {'state':'SUCCESS'}, 200
